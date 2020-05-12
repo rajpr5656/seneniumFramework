@@ -53,16 +53,11 @@ public class LoginPOM {
 
 	@FindBy(name="filter_email")
 	private WebElement emailid;
-
-	//@FindBy(xpath="//td[contains(text(),'abhin@gmail.com')]/preceding-sibling::td/input[@type='checkbox']")
-	//private WebElement email;
 		
 	public void filterButton() {
 		this.filterbtn.click(); 
 	}
-	//public void selectCheckbox() {
-	//this.email.click();
-	//}
+
 	public void selectCheckbox(String email) {
 		driver.findElement(By.xpath("//td[contains(text(), '"+email+"')]/preceding-sibling::td/input[@type='checkbox']")).click();
 	}
