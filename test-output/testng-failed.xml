@@ -7,7 +7,7 @@
         <methods>
           <include name="setUpBeforeClass"/>
           <include name="setUp"/>
-          <include name="validLoginTest"/>
+          <include name="thirdTest"/>
         </methods>
       </class> <!-- com.training.sanity.tests.LoginTests -->
     </classes>

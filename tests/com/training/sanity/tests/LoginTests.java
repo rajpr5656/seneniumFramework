@@ -11,15 +11,23 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
-import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+
+import com.training.pom.LoginPOM;
+import com.training.pom.HomePagePOM;
+import com.training.pom.RetrunsPagePOM;
+import com.training.pom.CustomerPagePOM;
+
 
 public class LoginTests {
 
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
+	private HomePagePOM homepagePOM;
+	private RetrunsPagePOM retrunspagePOM;
+	private CustomerPagePOM customerpagePOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -34,6 +42,9 @@ public class LoginTests {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
+		homepagePOM = new HomePagePOM(driver);
+		retrunspagePOM = new RetrunsPagePOM(driver);
+		customerpagePOM = new CustomerPagePOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -50,26 +61,27 @@ public class LoginTests {
 		loginPOM.sendUserName("admin");
 		loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn(); 
-		loginPOM.clickSalesLink();
-		loginPOM.clickReturnLink();
-		loginPOM.checkbox1();
-		loginPOM.deletebtn();
-		loginPOM.Okbutton();
-		loginPOM.successms();	
+		homepagePOM.clickSalesLink();
+		homepagePOM.clickReturnLink();
+		retrunspagePOM.checkbox1();
+		retrunspagePOM.deletebtn();
+		retrunspagePOM.Okbutton();
+		retrunspagePOM.successms();	
 		screenShot.captureScreenShot("First");
 	}
+	
 	@Test (priority=2)
 	public void secondTest() {
 		loginPOM.sendUserName("admin");
 		loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn(); 
-		loginPOM.clickCustomerLink();
-		loginPOM.clickCustomer();
-		loginPOM.entercustName("ABC DEF");
-		loginPOM.filterButton();
+		homepagePOM.clickCustomerLink();
+		homepagePOM.clickCustomer();
+		customerpagePOM.entercustName("ABC DEF");
+		customerpagePOM.filterButton();
 		screenShot.captureScreenShot("SecondTestCustomerFilter");
-		loginPOM.enteremailId("abc123@gmail.com");
-		loginPOM.filterButton();
+		customerpagePOM.enteremailId("abc123@gmail.com");
+		customerpagePOM.filterButton();
 		screenShot.captureScreenShot("SecondTestEmailFilter");
 	}
 	@Test (priority=3)
@@ -77,12 +89,12 @@ public class LoginTests {
 		loginPOM.sendUserName("admin");
 		loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn(); 
-		loginPOM.clickCustomerLink();
-		loginPOM.clickCustomer();
-		loginPOM.selectCheckbox("abhi@gmail.com");
-		loginPOM.deletebtn();
-		loginPOM.Okbutton();
-		loginPOM.successms();
+		homepagePOM.clickCustomerLink();
+		homepagePOM.clickCustomer();
+		customerpagePOM.selectCheckbox("abhi12@gmail.com");
+		retrunspagePOM.deletebtn();
+		retrunspagePOM.Okbutton();
+		retrunspagePOM.successms();
 		screenShot.captureScreenShot("ThirdTestSelectCheckbox");
 	}
 }
