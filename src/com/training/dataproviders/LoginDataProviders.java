@@ -21,7 +21,7 @@ public class LoginDataProviders {
 		for(LoginBean temp : list){
 			Object[]  obj = new Object[2]; 
 			obj[0] = temp.getUserName(); 
-			obj[1] = temp.getPassword(); 
+			obj[1] = temp.getPassword();
 			
 			result[count ++] = obj; 
 		}

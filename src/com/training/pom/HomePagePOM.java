@@ -13,7 +13,7 @@ public class HomePagePOM {
 		PageFactory.initElements(driver, this);
 	}
 	
-	//Sales link 
+	//Sales icon link 
 	@FindBy(xpath="//i[@class='fa fa-shopping-cart fa-fw']")
 	private WebElement saleslink;
 	
@@ -29,7 +29,7 @@ public class HomePagePOM {
 		this.returnlink.click(); 
 	}
 
-	//Customer link
+	//Customer icon link
 	@FindBy(xpath="//i[@class='fa fa-user fa-fw']")
 	private WebElement customerlink;
 	
@@ -43,5 +43,37 @@ public class HomePagePOM {
 	
 	public void clickCustomer() {
 		this.customer.click(); 
+	}
+	
+	//Catalog icon link
+	@FindBy(xpath="//i[@class='fa fa-tags fa-fw']")
+	private WebElement catalogicon;	
+	
+	public void clickCatalogLink() {
+		this.catalogicon.click(); 
+	}
+	
+	//Product link
+	@FindBy(xpath="//a[contains(text(),'Products')]")
+	private WebElement product;	
+	
+	public void clickProductLink() {
+		this.product.click(); 
+	}
+	
+	//Marketing link
+	@FindBy(xpath="//i[@class='fa fa-share-alt fa-fw']")
+	private WebElement marketlogicon;	
+	
+	public void clickMarketlogLink() {
+		this.marketlogicon.click(); 
+	}
+	
+	//Coupon link
+	@FindBy(xpath="//a[contains(text(),'Coupons')]")
+	private WebElement coupon;	
+	
+	public void clickCouponLink() {
+		this.coupon.click(); 
 	}
 }

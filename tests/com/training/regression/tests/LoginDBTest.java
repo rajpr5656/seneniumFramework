@@ -29,14 +29,14 @@ public class LoginDBTest {
 	private GenericMethods genericMethods; 
 	
 	
-	@BeforeClass
+	@BeforeClass(enabled=false)
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
 		properties.load(inStream);
 	}
 
-	@BeforeMethod
+	@BeforeMethod(enabled=false)
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver);
@@ -47,7 +47,7 @@ public class LoginDBTest {
 		driver.get(baseUrl);
 	}
 
-	@AfterMethod
+	@AfterMethod(enabled=false)
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
 		driver.quit();
@@ -59,6 +59,9 @@ public class LoginDBTest {
 		// for demonstration 
 //		genericMethods.getElement("login", "id"); 
 				
+		System.out.println("Username is " + userName);
+		System.out.println("Password is "+ password);
+		
 		loginPOM.sendUserName(userName);
 		
 		loginPOM.sendPassword(password);

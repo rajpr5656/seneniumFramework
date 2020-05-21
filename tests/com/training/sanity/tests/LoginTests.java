@@ -18,7 +18,8 @@ import com.training.pom.LoginPOM;
 import com.training.pom.HomePagePOM;
 import com.training.pom.RetrunsPagePOM;
 import com.training.pom.CustomerPagePOM;
-
+import com.training.pom.ProductsPagePOM;
+import com.training.pom.CouponPagePOM;
 
 public class LoginTests {
 
@@ -28,6 +29,8 @@ public class LoginTests {
 	private HomePagePOM homepagePOM;
 	private RetrunsPagePOM retrunspagePOM;
 	private CustomerPagePOM customerpagePOM;
+	private ProductsPagePOM productspagePOM;
+	private CouponPagePOM couponpagePOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -45,6 +48,8 @@ public class LoginTests {
 		homepagePOM = new HomePagePOM(driver);
 		retrunspagePOM = new RetrunsPagePOM(driver);
 		customerpagePOM = new CustomerPagePOM(driver);
+		productspagePOM = new ProductsPagePOM(driver);
+		couponpagePOM = new CouponPagePOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -56,7 +61,7 @@ public class LoginTests {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test (priority=1)
+/*	@Test (priority=1)
 	public void firstTest() {
 		loginPOM.sendUserName("admin");
 		loginPOM.sendPassword("admin@123");
@@ -96,5 +101,74 @@ public class LoginTests {
 		retrunspagePOM.Okbutton();
 		retrunspagePOM.successms();
 		screenShot.captureScreenShot("ThirdTestSelectCheckbox");
+	}*/
+	@Test (priority=4)
+	public void discountexistingproduct() {
+		loginPOM.sendUserName("admin");
+		loginPOM.sendPassword("admin@123");
+		loginPOM.clickLoginBtn(); 
+		homepagePOM.clickCatalogLink();
+		homepagePOM.clickProductLink();
+		productspagePOM.productEditbutton();
+		productspagePOM.clickDataTab();
+		productspagePOM.Quantitytextbox("30");
+		productspagePOM.clickDiscountTab();
+		productspagePOM.clickAddDiscount();
+		productspagePOM.Quantitydtextbox("1");
+		productspagePOM.Pricetextbox("50");
+		productspagePOM.clickstartCalendar();
+		productspagePOM.clickendCalendar();
+		productspagePOM.clickendDate();
+		productspagePOM.savebutton();
+		retrunspagePOM.successms();
+		screenShot.captureScreenShot("UNF_056_Discountexistingproduct");
+	}	
+	@Test (priority=5)
+	public void discountaddproduct() {
+		loginPOM.sendUserName("admin");
+		loginPOM.sendPassword("admin@123");
+		loginPOM.clickLoginBtn(); 
+		homepagePOM.clickCatalogLink();
+		homepagePOM.clickProductLink();
+		productspagePOM.addbutton();
+		productspagePOM.sendproductName("Shoes");
+		productspagePOM.sendMegatagName("Shoes for students");
+		productspagePOM.clickDataTab();
+		productspagePOM.sendModelName("SHS-103");
+		productspagePOM.sendpricemodel("1000");
+		productspagePOM.sendquantitymodel("20");
+		productspagePOM.clickLinkTab();
+		productspagePOM.sendcategorylink("Sports Uniform");
+		productspagePOM.clickDiscountTab();
+		productspagePOM.clickAddDiscount();
+		productspagePOM.Quantitydtextbox("2");
+		productspagePOM.Pricetextbox("1000");
+		productspagePOM.clickstartCalendar();
+		productspagePOM.clickstartDate();
+		productspagePOM.clickendCalendar();
+		productspagePOM.clickendDate1();
+		productspagePOM.savebutton();
+		retrunspagePOM.successms();
+		screenShot.captureScreenShot("UNF_057_Discountaddproduct");
+	}
+	@Test (priority=6)
+	public void couponsonproduct() {
+		loginPOM.sendUserName("admin");
+		loginPOM.sendPassword("admin@123");
+		loginPOM.clickLoginBtn(); 
+		homepagePOM.clickMarketlogLink();
+		homepagePOM.clickCouponLink();
+		productspagePOM.addbutton();
+		couponpagePOM.sendCouponName("Gift Voucher");
+		couponpagePOM.sendCode("GVV");
+		couponpagePOM.sendDiscount("200");
+		couponpagePOM.sendProductlink("Blazer Girls");
+		couponpagePOM.clickstartCalendar();
+		couponpagePOM.clickstartDate();
+		couponpagePOM.clickendCalendar();
+		couponpagePOM.clickendCalendar();
+		productspagePOM.savebutton();
+		retrunspagePOM.successms();
+		screenShot.captureScreenShot("UNF_058_Discountaddproduct");
 	}
 }
